@@ -1,0 +1,6 @@
+discord.py>=2.3.2
+aiocache[redis]==0.12.1
+aiohttp>=3.8.4
+aiohttp-retry==2.8.3
+python-dotenv>=0.21.1
+diagrams
