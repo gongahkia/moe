@@ -51,8 +51,14 @@ async def handle_error(interaction, error):
 async def on_ready():
     print(f'Bot connected as {bot.user}')
     try:
-        synced = await tree.sync()
-        print(f"Synced {len(synced)} commands globally.")
+        GUILD_ID = os.getenv('DISCORD_GUILD_ID')
+        if GUILD_ID:
+            guild = discord.Object(id=int(GUILD_ID))
+            synced = await tree.sync(guild=guild)
+            print(f"Synced {len(synced)} commands to guild {GUILD_ID}.")
+        else:
+            synced = await tree.sync()
+            print(f"Synced {len(synced)} commands globally.")
     except Exception as e:
         print(f"Error syncing commands: {e}")
 
