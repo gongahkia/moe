@@ -2,7 +2,7 @@
 
 # `Moe`
 
-Discord bot that finds [Steam](https://store.steampowered.com/) games you can play with friends.
+Discord bot that suggests Multiplayer [Steam](https://store.steampowered.com/) Games you can play with friends by comparing your [Steam Libraries](https://steam.fandom.com/wiki/Steam_Library) per [genre](https://store.steampowered.com/tag/browse/#global_492).
 
 <div align="center">
     <img src="./asset/reference/moe-profile.png" width=65%>
@@ -19,8 +19,8 @@ Discord bot that finds [Steam](https://store.steampowered.com/) games you can pl
 
 | Command | Description | Example |
 | :--- | :--- | :---: |
-| `` | | ![](./asset/reference/) |
-| `` | | ![](./asset/reference/) |
+| `/cache` | Show current Redis cache statistics | ![](./asset/reference/cache-1.png) <br> ![](./asset/reference/cache-2.png)|
+| `/compare <server_member_1> <server_member_2>` | Finds and categorizes shared multiplayer Steam games between two Discord server members | ![](./asset/reference/compare-1.png) <br> ![](./asset/reference/compare-2.png) |
 
 ## Architecture
 
