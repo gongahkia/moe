@@ -67,7 +67,7 @@ $ make
 
 ## Architecture
 
-...
+![](./asset/reference/architecture.png)
 
 ## Other notes
 
