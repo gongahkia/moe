@@ -1,5 +1,9 @@
+# ----- required imports -----
+
 from aiocache import RedisCache
 from aiocache.serializers import JsonSerializer
+
+# ----- class definitions -----
 
 cache = RedisCache(
     endpoint='localhost',

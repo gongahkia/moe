@@ -1,8 +1,14 @@
+# ----- required imports -----
+
 from src.cache import get_cache, set_cache
 from src.client import APIClient
 import os
 
+# ----- environment initialization -----
+
 STEAM_KEY = os.getenv('STEAM_API_KEY')
+
+# ----- class definitions -----
 
 class SteamAPI:
     @staticmethod
@@ -21,7 +27,6 @@ class SteamAPI:
                     'include_played_free_games': 0
                 }
             )
-        
         games = data['response'].get('games', [])
         await set_cache(cache_key, games)
         return games

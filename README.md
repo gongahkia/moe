@@ -20,10 +20,7 @@ Discord bot that finds [Steam](https://store.steampowered.com/) games you can pl
 | Command | Description | Example |
 | :--- | :--- | :---: |
 | `` | | ![](./asset/reference/) |
-
-## Screenshot
-
-...
+| `` | | ![](./asset/reference/) |
 
 ## Architecture
 

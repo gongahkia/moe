@@ -1,6 +1,10 @@
+# ----- required imports -----
+
 from aiohttp import ClientSession, TCPConnector
 from aiohttp_retry import RetryClient, ExponentialRetry
 import asyncio
+
+# ----- class definitions -----
 
 class APIClient:
     def __init__(self):

@@ -1,33 +1,44 @@
+# ----- required imports -----
+
 from dotenv import load_dotenv
 import os
 import discord
-import asyncio  
+import asyncio
 from discord import app_commands
+from discord.ext import commands  
 from src.api import SteamAPI
 from src.cache import cache
+
+# ----- environment initialization -----
 
 load_dotenv()
 
 intents = discord.Intents.default()
-bot = discord.Client(intents=intents)
-tree = app_commands.CommandTree(bot)
+bot = commands.Bot(command_prefix='!', intents=intents)  
 
-@tree.command(name="compare", description="Compare multiplayer games")
+# ----- event handlers -----
+
+@bot.command()
+async def clear_guild_commands(ctx):
+    guild = ctx.guild
+    await bot.tree.clear_commands(guild=guild)
+    await bot.tree.sync(guild=guild)
+    await ctx.send("Cleared all guild commands.")
+
+@bot.tree.command(name="compare", description="Compare multiplayer games")
 async def compare_games(interaction: discord.Interaction, user1: discord.Member, user2: discord.Member):
     await interaction.response.defer()
-    
     try:
-        steam_id1 = "76561197960434622"  # FUA Replace with actual resolution logic
-        steam_id2 = "76561197960434623"
+        steam_id1 = user1.steam_id
+        steam_id2 = user2.steam_id
         common_games = await find_common_games(steam_id1, steam_id2)
         embed = discord.Embed(title="🎮 Common Multiplayer Games")
         embed.add_field(name="Co-op Games", value="\n".join(g['name'] for g in common_games[:25]))
         await interaction.followup.send(embed=embed)
-        
     except Exception as e:
         await handle_error(interaction, e)
 
-@tree.command(name="cache_stats", description="Show Redis cache statistics")
+@bot.tree.command(name="cache_stats", description="Show Redis cache statistics")
 async def cache_stats(interaction: discord.Interaction):
     stats = await cache.raw("info", "memory")
     await interaction.response.send_message(
@@ -55,13 +66,19 @@ async def on_ready():
         GUILD_ID = os.getenv('DISCORD_GUILD_ID')
         if GUILD_ID:
             guild = discord.Object(id=int(GUILD_ID))
-            synced = await tree.sync(guild=guild)
+            await bot.tree.clear_commands(guild=guild)
+            await bot.tree.sync(guild=guild)
+            print("Cleared all guild commands.")
+            bot.tree.copy_global_to(guild=guild)
+            synced = await bot.tree.sync(guild=guild)
             print(f"Synced {len(synced)} commands to guild {GUILD_ID}.")
         else:
-            synced = await tree.sync()
+            synced = await bot.tree.sync()
             print(f"Synced {len(synced)} commands globally.")
     except Exception as e:
         print(f"Error syncing commands: {e}")
+
+# ----- execution code -----
 
 if __name__ == "__main__":
     bot.run(os.getenv('DISCORD_TOKEN'))
