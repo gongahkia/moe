@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 import discord
+import asyncio  
 from discord import app_commands
 from src.api import SteamAPI
 from src.cache import cache
@@ -16,9 +17,9 @@ async def compare_games(interaction: discord.Interaction, user1: discord.Member,
     await interaction.response.defer()
     
     try:
-        # Steam ID resolution logic here
+        steam_id1 = "76561197960434622"  # FUA Replace with actual resolution logic
+        steam_id2 = "76561197960434623"
         common_games = await find_common_games(steam_id1, steam_id2)
-        
         embed = discord.Embed(title="🎮 Common Multiplayer Games")
         embed.add_field(name="Co-op Games", value="\n".join(g['name'] for g in common_games[:25]))
         await interaction.followup.send(embed=embed)
