@@ -21,6 +21,14 @@ Discord bot that finds [Steam](https://store.steampowered.com/) games you can pl
 | :--- | :--- | :---: |
 | `` | | ![](./asset/reference/) |
 
+## Screenshot
+
+...
+
+## Architecture
+
+![](./asset/reference/architecture.png)
+
 ## Usage
 
 The below instructions are for locally hosting `Moe`.
@@ -63,7 +71,8 @@ $ make config
 $ make
 ```
 
-7. Note that it can take up to an hour to propogate `Moe`'s [Application Commands](https://discord.com/developers/docs/interactions/application-commands) with [Global Sync](https://stackoverflow.com/questions/76692316/how-to-sync-commands-globally-with-discord-py). To circumvent this issue, instantly sync `Moe`'s [Application Commands](https://discord.com/developers/docs/interactions/application-commands) by placing your Discord bot token, Discord Guild ID, Steam API key and Redis URL in a `.env` file within `./src/`.
+7. Note that it can take up to an hour to propogate `Moe`'s [Application Commands](https://discord.com/developers/docs/interactions/application-commands) with [Global Sync](https://stackoverflow.com/questions/76692316/how-to-sync-commands-globally-with-discord-py). 
+8. To circumvent this issue, instantly sync `Moe`'s [Application Commands](https://discord.com/developers/docs/interactions/application-commands) by placing your Discord bot token, Discord Guild ID, Steam API key and Redis URL in a `.env` file within `./src/`.
 
 ```env
 DISCORD_TOKEN=XXX
@@ -71,14 +80,6 @@ DISCORD_GUILD_ID=XXX
 STEAM_API_KEY=XXX
 REDIS_URL=redis://redis:6379/0
 ```
-
-## Screenshot
-
-...
-
-## Architecture
-
-![](./asset/reference/architecture.png)
 
 ## Other notes
 
