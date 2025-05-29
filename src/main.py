@@ -1,8 +1,11 @@
+from dotenv import load_dotenv
 import os
 import discord
 from discord import app_commands
-from api import SteamAPI
-from cache import cache
+from src.api import SteamAPI
+from src.cache import cache
+
+load_dotenv()
 
 intents = discord.Intents.default()
 bot = discord.Client(intents=intents)

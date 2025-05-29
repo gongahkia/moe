@@ -1,5 +1,5 @@
-from cache import get_cache, set_cache
-from client import APIClient
+from src.cache import get_cache, set_cache
+from src.client import APIClient
 import os
 
 STEAM_KEY = os.getenv('STEAM_API_KEY')

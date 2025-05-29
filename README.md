@@ -4,6 +4,10 @@
 
 Discord bot that finds [Steam](https://store.steampowered.com/) games you can play with friends.
 
+<div align="center">
+    <img src="./asset/reference/moe-profile.png" width=65%>
+</div>
+
 ## Stack
 
 * *Backend*: [Python](https://www.python.org/)
@@ -32,7 +36,6 @@ The below instructions are for locally hosting `Moe`.
     2. View Channel
     3. Read Message History
     4. Use Slash Commands
-
 4. Place your Discord bot token, Steam API key and Redis URL in a `.env` file within `./src/`.
 
 ```env
@@ -44,11 +47,9 @@ REDIS_URL=redis://redis:6379/0
 5. Run the following.
 
 ```console
-$ sudo apt-get install redis-server
 $ python3 -m venv myenv
 $ source myenv source/bin/activate
 $ pip install -r requirements.txt
-$ make config
 ```
 
 6. Then run either of the following.
@@ -58,6 +59,7 @@ $ docker-compose build && docker-compose up
 ```
 
 ```console
+$ make config
 $ make
 ```
 
