@@ -33,7 +33,7 @@ The below instructions are for locally hosting `Moe`.
     3. Read Message History
     4. Use Slash Commands
 
-4. Place your Discord bot token and Steam API key in a `.env` file within `./src/`.
+4. Place your Discord bot token, Steam API key and Redis URL in a `.env` file within `./src/`.
 
 ```env
 DISCORD_TOKEN=XXX
