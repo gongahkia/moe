@@ -47,5 +47,14 @@ async def handle_error(interaction, error):
         ephemeral=True
     )
 
+@bot.event
+async def on_ready():
+    print(f'Bot connected as {bot.user}')
+    try:
+        synced = await tree.sync()
+        print(f"Synced {len(synced)} commands globally.")
+    except Exception as e:
+        print(f"Error syncing commands: {e}")
+
 if __name__ == "__main__":
     bot.run(os.getenv('DISCORD_TOKEN'))
