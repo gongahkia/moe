@@ -11,7 +11,7 @@ Discord bot that suggests Multiplayer [Steam](https://store.steampowered.com/) G
 ## Stack
 
 * *Backend*: [Python](https://www.python.org/)
-* *Package*: [Docker](https://www.docker.com/https://www.docker.com/)
+* *Package*: [Docker](https://www.docker.com/)
 * *Cache*: [Redis](https://redis.io/)
 * *API*: [Discord Developer API](https://discord.com/developers/docs/reference), [Steam Web API](https://steamcommunity.com/dev)
 
