@@ -2,3 +2,17 @@ myenv
 __pycache__
 .env
 .env.local
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+*.db
+data/*.db
+.pytest_cache
+.coverage
+htmlcov

@@ -3,3 +3,27 @@ services:
     image: redis:alpine
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  bot:
+    build: .
+    depends_on:
+      - redis
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - DISCORD_GUILD_ID=${DISCORD_GUILD_ID}
+      - STEAM_API_KEY=${STEAM_API_KEY}
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_PATH=/data/moe.db
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - bot_data:/data
+      - ./src:/app/src
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  bot_data:

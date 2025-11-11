@@ -1,4 +1,4 @@
-.PHONY: all build up down clean logs test help env
+.PHONY: all build up down clean logs test help env install dev-install run-local test-local
 
 all: build up
 
@@ -46,16 +46,43 @@ env:
 		echo "REDIS_URL=redis://redis:6379/0" >> .env; \
 	fi
 
+install:
+	@echo "Installing dependencies..."
+	@$(PYTHON) -m pip install -r requirements.txt
+
+dev-install: install
+	@echo "Installing development dependencies..."
+	@$(PYTHON) -m pip install -r requirements.txt
+
+run-local:
+	@echo "Running bot locally..."
+	@$(PYTHON) -m src.main
+
+test-local:
+	@echo "Running tests locally..."
+	@$(PYTHON) -m pytest tests/ -v
+
 help:
 	@echo "Available targets:"
-	@echo "  all       - Build and start containers (default)"
-	@echo "  build     - Build containers"
-	@echo "  up        - Start containers"
-	@echo "  down      - Stop and remove containers"
-	@echo "  clean     - Remove all Docker artifacts"
-	@echo "  logs      - View container logs"
-	@echo "  test      - Run tests"
-	@echo "  env       - Create .env template"
-	@echo "  help      - Show this help"
+	@echo ""
+	@echo "  Docker Commands:"
+	@echo "    all         - Build and start containers (default)"
+	@echo "    build       - Build containers"
+	@echo "    up          - Start containers"
+	@echo "    down        - Stop and remove containers"
+	@echo "    clean       - Remove all Docker artifacts"
+	@echo "    logs        - View container logs"
+	@echo "    test        - Run tests in container"
+	@echo ""
+	@echo "  Local Development:"
+	@echo "    install     - Install Python dependencies"
+	@echo "    dev-install - Install with dev dependencies"
+	@echo "    run-local   - Run bot locally"
+	@echo "    test-local  - Run tests locally"
+	@echo ""
+	@echo "  Utilities:"
+	@echo "    config      - Install pre-commit hooks"
+	@echo "    env         - Create .env template"
+	@echo "    help        - Show this help"
 
 .DEFAULT_GOAL := help

@@ -1,6 +1,17 @@
 FROM python:3.10-slim
-RUN apt-get update && apt-get install -y redis-server
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
 COPY . .
-CMD ["redis-server", "--daemonize yes", "&&", "python", "-m", "bot"]
+
+# Create data directory
+RUN mkdir -p /data
+
+# Run the bot
+CMD ["python", "-m", "src.main"]
